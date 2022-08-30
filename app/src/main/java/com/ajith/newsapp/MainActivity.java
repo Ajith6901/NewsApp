@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements CategoryRVAdapter
         newsRV.setAdapter(newsRVAdapter);
         categoryRV.setAdapter(categoryRVAdapter);
 
-        getCategories();
-        getNews("All");
+//        getCategories();
+        getNews(    "All");
         newsRVAdapter.notifyDataSetChanged();
     }
     private void getCategories()
@@ -68,9 +68,10 @@ public class MainActivity extends AppCompatActivity implements CategoryRVAdapter
     {
         loadingPB.setVisibility(View.VISIBLE);
         articleArrayList.clear();
-        String categoryURL =" https://newsapi.org/v2/top-headlines/sources?category="+category+"&apiKey=b93c421b79134a7e9fca4ba51d186d5f";
-        String url = "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=b93c421b79134a7e9fca4ba51d186d5f";
-        String BASE_URL="http://newsapi.org/";
+        String categoryURL =" https://newsapi.org/v2/top-headlines/sources?&apiKey=b93c421b79134a7e9fca4ba51d186d5f";
+        String url = "https://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=b93c421b79134a7e9fca4ba51d186d5f";
+
+        String BASE_URL="https://newsapi.org";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -104,7 +105,8 @@ public class MainActivity extends AppCompatActivity implements CategoryRVAdapter
 
             @Override
             public void onFailure(Call<NewsModal> call, Throwable t) {
-                Toast.makeText(MainActivity.this,"Fail to get news ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"Fail to get news " + t.toString(),Toast.LENGTH_SHORT).show();
+
             }
         });
     }

@@ -46,21 +46,37 @@ public class CategoryRVAdapter  extends RecyclerView.Adapter<CategoryRVAdapter.V
         return  new CategoryRVAdapter.ViewHolder(view);
     }
 
-//    @SuppressLint("RecyclerView")
     @Override
-    public void onBindViewHolder(@NonNull CategoryRVAdapter.ViewHolder holder, int position ) {
-        //for fillingt the content into the view
-        CategoryRVModal categoryRVModal = categoryRVModals.get(position);
-        holder.categoryTV.setText(categoryRVModal.getCategory());
-        Picasso.get().load(categoryRVModal.getCategoryImageUrl()).into(holder.categoryIV);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+                CategoryRVModal categoryRVModal = categoryRVModals.get(position);
+                holder.categoryTV.setText(categoryRVModal.getCategory());
+
+
+                Picasso.get().load(categoryRVModal.getCategoryImageUrl()).into(holder.categoryIV);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                categoryClickInterface.onCategoryClick(position);
+                categoryClickInterface.onCategoryClick(holder.getAdapterPosition());
             }
         });
 
     }
+
+//    @SuppressLint("RecyclerView")
+//    @Override
+//    public void onBindViewHolder(@NonNull CategoryRVAdapter.ViewHolder holder, int position ) {
+//        //for fillingt the content into the view
+//        CategoryRVModal categoryRVModal = categoryRVModals.get(position);
+//        holder.categoryTV.setText(categoryRVModal.getCategory());
+//        Picasso.get().load(categoryRVModal.getCategoryImageUrl()).into(holder.categoryIV);
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                categoryClickInterface.onCategoryClick(position);
+//            }
+//        });
+//
+//    }
 
     @Override
     public int getItemCount() {
